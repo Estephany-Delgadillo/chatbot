@@ -27,8 +27,8 @@ try:
                 
                 st.success(f"✅ Manual cargado: {len(texto_completo)} caracteres")
                 
-                # Crear modelo
-                modelo = genai.GenerativeModel('gemini-pro')
+                # Crear modelo (CORREGIDO)
+                modelo = genai.GenerativeModel('gemini-1.5-flash')
                 
                 # Historial
                 if "mensajes" not in st.session_state:
