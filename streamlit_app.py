@@ -23,8 +23,8 @@ try:
             
             st.success(f"✅ Manual cargado: {len(texto_completo)} caracteres")
             
-            # USAR ESTE NOMBRE EXACTO DEL MODELO
-            modelo = genai.GenerativeModel('models/gemini-pro')
+            # MODELO CORREGIDO - Este sí está disponible en tu API
+            modelo = genai.GenerativeModel('models/gemini-2.0-flash')
             
             if "mensajes" not in st.session_state:
                 st.session_state.mensajes = []
@@ -42,7 +42,7 @@ try:
                     with st.spinner("Buscando en el manual..."):
                         try:
                             prompt = f"""
-                            Basándote SOLO en el siguiente manual, responde la pregunta.
+                            Basándote SOLO en el siguiente manual, responde la pregunta de forma clara.
                             Si la respuesta no está en el manual, di "Esta información no está en el manual".
                             
                             MANUAL:
@@ -59,15 +59,6 @@ try:
                             
                         except Exception as e:
                             st.error(f"Error: {e}")
-                            # Mostrar modelos disponibles
-                            try:
-                                modelos = genai.list_models()
-                                st.write("Modelos disponibles:")
-                                for m in modelos:
-                                    if 'generateContent' in m.supported_generation_methods:
-                                        st.write(f"- {m.name}")
-                            except:
-                                pass
                             
     else:
         st.error(f"❌ No se encontró '{PDF_PATH}'")
